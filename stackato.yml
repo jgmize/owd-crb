@@ -11,5 +11,5 @@ hooks:
 processes:
     web: cd $HOME/mozilla-flask-crb/build; python -m SimpleHTTPServer $PORT
 cron:
-    - "*/1 * * * * cd $HOME/mozilla-flask-crb; git pull"
+    - "0 * * * * cd $HOME/mozilla-flask-crb; git pull"
     
