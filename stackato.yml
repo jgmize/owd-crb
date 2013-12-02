@@ -1,4 +1,8 @@
 name: owd-crb
+url:
+    - owd-crb.paas.mozilla.org
+    - openwebdevice.org
+    - www.openwebdevice.org
 framework:
     type: generic
 hooks:
@@ -8,3 +12,4 @@ processes:
     web: cd $HOME/mozilla-flask-crb/build; python -m SimpleHTTPServer $PORT
 cron:
     - "*/1 * * * * cd $HOME/mozilla-flask-crb; git pull"
+    
