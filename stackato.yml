@@ -1,0 +1,10 @@
+name: owd-crb
+framework:
+    type: generic
+hooks:
+    pre-staging:
+        - git clone https://github.com/caktus/mozilla-flask-crb.git
+processes:
+    web: cd $HOME/mozilla-flask-crb/build; python -m SimpleHTTPServer $PORT
+cron:
+    - "*/1 * * * * cd $HOME/mozilla-flask-crb; git pull"
