@@ -1,4 +1,7 @@
 import os
+
+import dj_database_url
+
 """
 Django settings for openwebdevice project.
 
@@ -18,7 +21,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 # See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '3^!3f_ih#6y1+@u#lrhfw4-(yrh@(y8p#46xxons52=xh%o)=%'
+SECRET_KEY = os.environ.get(
+    'SECRET_KEY', '3^!3f_ih#6y1+@u#lrhfw4-(yrh@(y8p#46xxons52=xh%o)=%')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DEBUG', False)
@@ -58,7 +62,7 @@ WSGI_APPLICATION = 'openwebdevice.wsgi.application'
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
 
 DATABASES = {
-    'default': {
+    'default': dj_database_url.config() or {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
@@ -82,6 +86,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 
 STATIC_URL = '/'
-STATIC_ROOT = os.environ.get('STATIC_ROOT', './mozilla-flask-crb/build/')
+STATIC_ROOT = os.environ.get(
+    'STATIC_ROOT', os.path.join(BASE_DIR, 'mozilla-flask-crb/build/'))
 
 CANONICAL_HTTP_HOST = 'openwebdevice.org'
+
+TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'templates')]

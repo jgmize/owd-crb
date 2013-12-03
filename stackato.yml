@@ -8,9 +8,16 @@ framework:
 requirements:
     pip:
         - django==1.6
+        - dj-database-url==0.2.2
+    pypm:
+        - MySQL-python==1.2.3
+services:
+    ${name}-db: mysql
 hooks:
     pre-staging:
         - git clone https://github.com/caktus/mozilla-flask-crb.git
+    post-staging:
+        - python manage.py syncdb --noinput
 #processes:
 #    web: cd $HOME/mozilla-flask-crb/build; python -m SimpleHTTPServer $PORT
 cron:
