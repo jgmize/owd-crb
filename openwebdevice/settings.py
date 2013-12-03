@@ -83,3 +83,5 @@ USE_TZ = True
 
 STATIC_URL = '/'
 STATIC_ROOT = os.environ.get('STATIC_ROOT', './mozilla-flask-crb/build/')
+
+CANONICAL_HTTP_HOST = 'openwebdevice.org'

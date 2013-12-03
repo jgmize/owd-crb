@@ -1,8 +1,12 @@
-from django.views.static import serve
 from django.conf import settings
+from django.http import HttpResponsePermanentRedirect
+from django.views.static import serve
 
 
 def conditional_serve(request, path='', document_root=None):
+    if request.META['HTTP_HOST'] != settings.CANONICAL_HTTP_HOST:
+        return HttpResponsePermanentRedirect(
+            'http://%s/%s' % (settings.CANONICAL_HTTP_HOST, path))
     document_root = document_root or settings.STATIC_ROOT
     if not path:
         path = '/index.html'
