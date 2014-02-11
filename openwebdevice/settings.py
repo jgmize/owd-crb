@@ -1,4 +1,5 @@
 import os
+import socket
 
 import dj_database_url
 
@@ -30,7 +31,7 @@ DEBUG = os.environ.get('DEBUG', False)
 TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = ['openwebdevice.org', 'www.openwebdevice.org',
-                 'owd-crb.paas.mozilla.org', 'localhost']
+                 'owd-crb.paas.mozilla.org', 'localhost', socket.gethostname()]
 
 
 # Application definition
