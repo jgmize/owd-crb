@@ -12,6 +12,4 @@ def conditional_serve(request, path='', document_root=None):
         path = '/index.html'
     elif path.endswith('/'):
         path += 'index.html'
-    if not path.startswith('static') and not request.user.is_authenticated():
-        return HttpResponseRedirect('/login/')
     return serve(request, path=path, document_root=document_root)
