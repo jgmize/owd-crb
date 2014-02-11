@@ -18,8 +18,8 @@ hooks:
         - git clone https://github.com/caktus/mozilla-flask-crb.git
     post-staging:
         - python manage.py syncdb --noinput
-#processes:
-#    web: cd $HOME/mozilla-flask-crb/build; python -m SimpleHTTPServer $PORT
+processes:
+    web: $STACKATO_UWSGI --logformat "%(addr) %(method) %(proto) %(host) %(uri) %(status) %(time)"
 cron:
     - "0 * * * * cd $HOME/mozilla-flask-crb; git pull"
     
